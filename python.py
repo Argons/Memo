@@ -19,3 +19,10 @@ class Image(object):
 
 Warning: 不要贸然进行这个优化，把它用在所有地方。这种做法不利于代码维护，
 而且只有当你有数以千计的实例的时候才会有明显效果。
+
+
+from multiprocessing import Pool
+from multiprocessing.dummy import Pool as ThreadPool
+
+pool = ThreadPool(11)
+pool.map(lambda l: pass, list)
