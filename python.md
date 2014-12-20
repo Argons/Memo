@@ -1,6 +1,33 @@
 ### Python Tips:
 
 ----
+script compiler: #!/usr/bin/ python
+
+----
+http://www.dreamsyssoft.com/python-scripting-tutorial/optionparser-tutorial.php
+import sys
+arg1, argv2 = sys.argv[:3]
+
+import optparse
+parser = optparse.OptionParser()
+parser.add_option(‘-n’, ‘--name’, dest=’name’, help=’Input Your Name’)
+(options, args) = parser.parse_args()
+if options.name is None: options.name = raw_input(‘Enter Name:’)
+./year.py -n Sol
+
+-----
+import subprocess
+subprocess.call("ls -l", shell=True)
+proc = subprocess.Popen(['tail', '-500', './Ubuntu-Nightmares.sh'], stdout=subprocess.PIPE)
+
+-----
+多属性排序:
+list_records.sort(
+  key = lambda line: (line[0], line[2])
+)
+
+
+----
 
 默认情况下，Python用一个dict来存储对象实例的属性。这在一般情况下还不错，
 而且非常灵活，乃至你在运行时可以随意设置新的属性。
