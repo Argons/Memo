@@ -31,6 +31,83 @@ class Image(object):
 from multiprocessing import Pool
 from multiprocessing.dummy import Pool as ThreadPool
 
-pool = ThreadPool(11)
-pool.map(lambda l: pass, list)
+pool = ThreadPool(12)
+pool.map(lambda l:l, list)
 ```
+
+----
+每个函数和方法消耗了多少时间，以及这些函数被调用了多少次，可以使用cProfile模块:
+```bash
+$ python -m cProfile -s cumulative timing_functions.py
+```
+OR 逐行检测CPU, memory消耗: line_profiler, memory__profiler
+
+------
+
+- use \*args when you’re not sure how many arguments might be passed to your function, 
+i.e. it allows you pass an arbitrary number of arguments to your function;
+- \*\***kwargs allows you to handle named arguments that you have not defined in advance.
+- You can also use the \* and \*\* syntax when calling a function.
+
+```python
+
+```
+
+
+
+
+
+
+-----
+#### Python修饰器(decorator)：
+
+多个decorator:
+```python
+@decorator_one
+@decorator_two
+def func():
+    pass
+```
+相当于：
+```python
+func = decorator_one(decorator_two(func))
+```
+带参数的decorator：
+```python
+@decorator(arg1, arg2)
+def func():
+    pass
+```
+相当于：
+```python
+func = decorator(arg1,arg2)(func)
+```
+
+```python
+from functools import wraps
+def memo(fn):
+    cache = {}
+    miss = object()
+
+    @wraps(fn)
+    def wrapper(*args):
+        result = cache.get(args, miss)
+        if result is miss:
+            result = fn(*args)
+            cache[args] = result
+        return result
+
+    return wrapper
+
+@memo
+def fib(n):
+    if n < 2:
+    return n
+    return fib(n - 1) + fib(n - 2)>
+```
+
+
+```python
+
+
+
